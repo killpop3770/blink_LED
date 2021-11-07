@@ -1,0 +1,31 @@
+[package]
+name = "stm32f103c8t6"
+version = "0.1.0"
+edition = "2018"
+author = "killpop3770"
+
+# Зависимости для разработки под процессор Cortex-M3
+[dependencies]
+cortex-m = "*"
+cortex-m-rt = "*"
+cortex-m-semihosting = "*"
+panic-halt = "*"
+nb = "*"
+embedded-hal = "*"
+
+# Пакет для разработки под отладочные платы stm32f1
+[dependencies.stm32f1xx-hal]
+version = "0.7.0"
+features = ["stm32f103", "rt"]
+
+# Позволяет использовать `cargo fix`!
+[[bin]]
+name = "stm32f103c8t6"
+test = false
+bench = false
+
+# Включение оптимизации кода
+[profile.release]
+codegen-units = 1 # Лучшая оптимизация
+debug = true # Нормальные символы, не увеличивающие размер на Flash памяти
+lto = true # Лучшая оптимизация
